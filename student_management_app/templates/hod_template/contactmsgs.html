@@ -1,0 +1,86 @@
+{% extends 'hod_template/base_template.html' %}
+
+{% block page_title %}
+    Contact Messages
+{% endblock page_title %}
+
+{% block main_content %}
+
+{% load static %}
+
+<section class="content">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">Messages</h3>
+                        </div>
+                        <!-- /.card-header -->
+
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Subject</th>
+                                    <th>Messages</th>
+                                    <th>Sended On</th>
+                                </tr>
+                                </thead>
+
+                                {% for msgs in contactmsg %}
+                                <tbody>
+                                <tr>
+                                    <td>{{ msgs.sno }}</td>
+                                    <td>{{ msgs.name }}</td>
+                                    <td>{{ msgs.email }}</td>
+                                    <td>{{ msgs.subject }}</td>
+                                    <td>{{ msgs.text }}</td>
+                                    <td>{{ msgs.timeStamp }}</td>
+                                </tr>
+                                </tbody>
+                                {% endfor %}
+
+                            </table>
+                        </div>
+
+                    </div>
+                    <!-- /.card -->
+
+                </div>
+            </div>
+
+        </div><!-- /.container-fluid -->
+      </section>
+
+      {% comment %} Modal to Reply Feedback {% endcomment %}
+      <!-- Modal -->
+        <div class="modal fade" id="replyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Reply Feedback</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Reply to: <b><span id="reply_name"></span></b></p>
+                <input type="hidden" id="reply_id" name="reply_id" />
+                <textarea class="form-control" rows="5" id="reply_message"></textarea>
+            </div>
+            <div class="modal-footer">
+                {% comment %} <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> {% endcomment %}
+                <button type="button" class="btn btn-primary btn-block" id="reply_button">Reply</button>
+            </div>
+            </div>
+        </div>
+        </div>
+
+  {% endblock main_content %}
+
